@@ -40,6 +40,10 @@ export default function Cart() {
     removeProductFromOrder(productId).then(refresh)
   }
 
+  const removeOrder = () => {
+    
+  }
+
   return (
     <>
       <CompleteFormModal
@@ -52,7 +56,7 @@ export default function Cart() {
         <CartDetail cart={cart} removeProduct={removeProduct} />
         <>
           <a className="card-footer-item" onClick={() => setShowCompleteForm(true)}>Complete Order</a>
-          <a className="card-footer-item">Delete Order</a>
+          <a className="card-footer-item" onClick={() => removeOrder()}>Delete Order</a>
         </>
       </CardLayout>
     </>
