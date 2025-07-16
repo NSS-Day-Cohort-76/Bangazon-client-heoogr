@@ -14,8 +14,8 @@ export function getProducts(query = undefined) {
   });
 }
 
-export function getCategories() {
-  return fetchWithResponse("categories", {
+export function getProductCategories() {
+  return fetchWithResponse('productcategories', {
     headers: {
       Authorization: `Token ${localStorage.getItem("token")}`,
     },
