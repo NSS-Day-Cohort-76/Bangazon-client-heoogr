@@ -12,7 +12,7 @@ export function Detail({ product, like, unlike }) {
 
 
   const addToCart = () => {
-    addProductToOrder(product.id).then(() => {
+    addProductToOrder(parseInt(product.id)).then(() => {
       router.push('/cart')
     })
   }
