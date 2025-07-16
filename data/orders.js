@@ -26,3 +26,13 @@ export function completeCurrentOrder(orderId, paymentTypeId) {
     body: JSON.stringify({paymentTypeId})
   })
 }
+
+export const deleteCurrentOrder = (orderId) => {
+  return fetchWithResponse(`orders/${orderId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
