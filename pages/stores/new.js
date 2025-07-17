@@ -22,7 +22,7 @@ export default function NewStore() {
         ...profile,
         store: res
       })
-      router.push(`/stores/${res.id}`)
+      router.push(`/stores/${res?.id}`)
     })
   }
 

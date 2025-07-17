@@ -19,75 +19,77 @@ export default function Navbar() {
     navbar.current.classList.toggle("is-active");
   };
 
-  const getLoggedInButtons = () => {
-    return (
-      <div className="navbar-item has-dropdown is-hoverable">
-        <a className="navbar-link">
-          <span className="icon">
-            <i className="fas fa-user-circle is-medium"></i>
-          </span>
-        </a>
-        <div className="navbar-dropdown is-right">
-          <Link href="/cart" className="navbar-item">
-            Cart
-          </Link>
-          <Link href="/my-orders" className="navbar-item">
-            My Orders
-          </Link>
-          <Link href="/payments" className="navbar-item">
-            Payment Methods
-          </Link>
-          <Link href="/profile" className="navbar-item">
-            Profile
-          </Link>
-          {profile.store ? (
-            <>
-              <Link href={`/stores/${profile.store.id}`}>
-                <a className="navbar-item">View Your Store</a>
-              </Link>
-              <Link href="/products/new" className="navbar-item">
-                Add a new Product
-              </Link>
-            </>
-          ) : (
-            <Link href="/stores/new" className="navbar-item">
-              Interested in selling?
-            </Link>
-          )}
-          <hr className="navbar-divider"></hr>
-          <a
-            className="navbar-item"
-            onClick={() => {
-              localStorage.removeItem("token");
-              setIsLoggedIn(false);
-            }}>
-            Log out
-          </a>
-        </div>
-      </div>
-    );
-  };
+  const getLoggedInButtons = () => (
+    <div className="navbar-item has-dropdown is-hoverable">
+      <span className="navbar-link">
+        <span className="icon">
+          <i className="fas fa-user-circle is-medium"></i>
+        </span>
+      </span>
+      <div className="navbar-dropdown is-right">
+        <Link href="/cart" className="navbar-item">
+          Cart
+        </Link>
+        <Link href="/my-orders" className="navbar-item">
+          My Orders
+        </Link>
+        <Link href="/payments" className="navbar-item">
+          Payment Methods
+        </Link>
+        <Link href="/profile" className="navbar-item">
+          Profile
+        </Link>
 
-  const getLoggedOutButtons = () => {
-    return (
-      <div className="navbar-item">
-        <div className="buttons">
-          <Link href="/register" className="button is-primary">
-            <strong>Sign up</strong>
+        {profile.store ? (
+          <>
+            <Link href={`/stores/${profile.store.id}`} className="navbar-item">
+              View Your Store
+            </Link>
+            <Link href="/products/new" className="navbar-item">
+              Add a new Product
+            </Link>
+          </>
+        ) : (
+          <Link href="/stores/new" className="navbar-item">
+            Interested in selling?
           </Link>
-          <Link href="/login" className="button is-light">
-            Log in
-          </Link>
-        </div>
+        )}
+
+        <hr className="navbar-divider" />
+
+        <span
+          className="navbar-item"
+          role="button"
+          onClick={() => {
+            localStorage.removeItem("token");
+            setIsLoggedIn(false);
+          }}
+        >
+          Log out
+        </span>
       </div>
-    );
-  };
+    </div>
+  );
+
+  const getLoggedOutButtons = () => (
+    <div className="navbar-item">
+      <div className="buttons">
+        <Link href="/register" className="button is-primary">
+          <strong>Sign up</strong>
+        </Link>
+        <Link href="/login" className="button is-light">
+          Log in
+        </Link>
+      </div>
+    </div>
+  );
 
   return (
     <nav
       className="navbar mb-3 is-warning px-5 is-fixed-top is-top"
       role="navigation"
-      aria-label="main navigation">
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <Link href="/">
           <img
@@ -98,18 +100,18 @@ export default function Navbar() {
           />
         </Link>
 
-        <a
-          role="button"
+        <button
           className="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
           ref={hamburger}
-          onClick={showMobileNavbar}>
+          onClick={showMobileNavbar}
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </button>
       </div>
 
       <div className="navbar-menu" ref={navbar}>
@@ -121,7 +123,10 @@ export default function Navbar() {
             Stores
           </Link>
         </div>
-        <div className="navbar-end">{isLoggedIn ? getLoggedInButtons() : getLoggedOutButtons()}</div>
+
+        <div className="navbar-end">
+          {isLoggedIn ? getLoggedInButtons() : getLoggedOutButtons()}
+        </div>
       </div>
     </nav>
   );
