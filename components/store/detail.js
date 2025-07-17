@@ -7,14 +7,17 @@ export default function Detail({ store, isOwner, favorite, unfavorite }) {
   const [selling, setSelling] = useState([]);
   const [sold, setSold] = useState([]);
 
-useEffect(() => {
-  if (!store?.id) return; // don't call API if store id is missing
+  useEffect(() => {
+    if (!store?.id) return;
 
-  getStoreProducts(store.id).then(({ selling, sold }) => {
-    setSelling(selling);
-    setSold(sold);
-  });
-}, [store?.id]);
+    getStoreProducts(store.id).then((response = {}) => {
+      console.log("API Response:", response);
+
+      // Directly use the arrays from the response
+      setSelling(response.selling || []);
+      setSold(response.sold || []);
+    });
+  }, [store?.id]);
 
   const ownerButtons = () => {
     return (
