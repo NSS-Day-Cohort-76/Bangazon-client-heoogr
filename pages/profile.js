@@ -31,11 +31,13 @@ export default function Profile() {
       <CardLayout title="Products you've recommended" width="is-full">
         <div className="columns is-multiline">
           {profile.recommends?.map((recommendation) => (
+            <>
             <ProductCard
               product={recommendation.product}
               key={recommendation.product.id}
               width="is-one-third"
             />
+            </>
           ))}
         </div>
         <></>

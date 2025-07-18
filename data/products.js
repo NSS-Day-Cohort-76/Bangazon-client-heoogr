@@ -40,7 +40,7 @@ export function addProductToOrder(id) {
 }
 
 export function removeProductFromOrder(id) {
-  return fetchWithoutResponse(`products/${id}`, {
+  return fetchWithoutResponse(`products/${id}/remove_from_order`, {
     method: "DELETE",
     headers: {
       Authorization: `Token ${localStorage.getItem("token")}`,
