@@ -22,7 +22,8 @@ export default function Profile() {
     <>
       <CardLayout title="Favorite Stores" width="is-full">
         <div className="columns is-multiline">
-          {profile.favorites?.map((favorite) => (
+          {profile.favorited_sellers?.map((favorite) => (
+            //display the name of the store owner and link to the store page
             <StoreCard store={favorite} key={favorite.id} width="is-one-third" />
           ))}
         </div>
@@ -32,11 +33,11 @@ export default function Profile() {
         <div className="columns is-multiline">
           {profile.recommends?.map((recommendation) => (
             <>
-            <ProductCard
-              product={recommendation.product}
-              key={recommendation.product.id}
-              width="is-one-third"
-            />
+              <ProductCard
+                product={recommendation.product}
+                key={recommendation.product.id}
+                width="is-one-third"
+              />
             </>
           ))}
         </div>
