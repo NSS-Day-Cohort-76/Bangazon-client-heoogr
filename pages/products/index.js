@@ -11,7 +11,7 @@ export default function Products() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("Loading products...");
   const [locations, setLocations] = useState([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null)
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
   useEffect(() => {
     getProducts()
@@ -81,35 +81,44 @@ export default function Products() {
     <>
       <div className="container">
         <div className="table-container">
-          <h1 className="title is-2 table-title">Product Categories</h1>
+          {selectedCategoryId ? (
+            <h1 className="title is-2 table-title">
+              Selected Category Products
+            </h1>
+          ) : (
+            <h1 className="title is-2 table-title">Products</h1>
+          )}
 
-          { !selectedCategoryId &&
-           lastFivePerCat.map(({ category, products }) => (
-            <div key={category.id} className="category-table">
-              <div className="category-header">
-                <span className="category-count">
-                </span>
-              </div>
-              <table className="table is-fullwidth is-hoverable">
-                <thead>
-                  <tr>
-                    <th>{category.name}</th>
-                    <th>Created Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product) => (
-                    <tr key={product.id} className="product-row">
-                      <td className="product-name">{product.name}</td>
-                      <td className="product-date">{product.created_date}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))}
+          {!selectedCategoryId
+            ? lastFivePerCat.map(({ category, products }) => (
+                <div key={category.id} className="category-table">
+                  <div className="category-header">
+                    <span className="category-count"></span>
+                  </div>
+                  <table className="table is-fullwidth is-hoverable">
+                    <thead>
+                      <tr>
+                        <th>{category.name}</th>
+                        <th>Created Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {products.map((product) => (
+                        <tr key={product.id} className="product-row">
+                          <td className="product-name">{product.name}</td>
+                          <td className="product-date">
+                            {product.created_date}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ))
+            : ""}
         </div>
       </div>
+      {console.log(selectedCategoryId)}
       <Filter
         productCount={products.length}
         onSearch={searchProducts}

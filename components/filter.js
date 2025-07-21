@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { getProductCategories } from "../data/products";
 import { Input, Select } from "./form-elements";
 
-export default function Filter({ productCount, onSearch, locations, onCategorySelect }) {
+export default function Filter({
+  productCount,
+  onSearch,
+  locations,
+  onCategorySelect,
+}) {
   const refEls = {
     location: useRef(),
     category: useRef(),
@@ -132,14 +137,11 @@ export default function Filter({ productCount, onSearch, locations, onCategorySe
                     options={locations}
                     title="Filter by Location"
                     addlClass="is-fullwidth"
-                    onChange = {(e) => {
-                      onCategorySelect(e.target.value !== "0" ? Number(e.target.value) : null)
-                    }}
                   />
                 </div>
                 <hr className="dropdown-divider"></hr>
                 <div className="dropdown-item">
-                  <Select
+                  <Select onCategorySelect= {onCategorySelect}
                     refEl={refEls.category}
                     options={categories}
                     title="Filter by Category"
