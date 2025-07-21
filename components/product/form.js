@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getCategories } from '../../data/products'
+import { getCategories, getProductCategories } from '../../data/products'
 import CardLayout from '../card-layout'
 import { Textarea, Select, Input } from '../form-elements'
 
@@ -7,7 +7,7 @@ export default function ProductForm({ formEl, saveEvent, title, router }) {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    getCategories().then(catData => setCategories(catData))
+    getProductCategories().then(catData => setCategories(catData))
   }, [])
 
   return (

@@ -1,4 +1,5 @@
 import { Rating } from 'react-simple-star-rating'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 
 export default function RatingForm({ saveRating }) {
@@ -13,6 +14,9 @@ export default function RatingForm({ saveRating }) {
     })
   }
 
+  const Rating = dynamic(() => import('react-simple-star-rating').then(mod => mod.Rating), {
+    ssr: false,
+  })
 
 
   return (

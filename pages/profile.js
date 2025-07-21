@@ -22,46 +22,74 @@ export default function Profile() {
     <>
       <CardLayout title="Favorite Stores" width="is-full">
         <div className="columns is-multiline">
-          {profile.favorites?.map((favorite) => (
-            <StoreCard store={favorite} key={favorite.id} width="is-one-third" />
-          ))}
+          {profile.favorites?.length > 0 ? (
+            profile.favorites.map((favorite) => (
+              <StoreCard
+                key={favorite.id}
+                store={favorite}
+                width="is-one-third"
+              />
+            ))
+          ) : (
+            <p className="has-text-grey is-italic px-4 py-2">
+              You haven’t added any favorite stores yet.
+            </p>
+          )}
         </div>
-        <></>
       </CardLayout>
+
       <CardLayout title="Products you've recommended" width="is-full">
         <div className="columns is-multiline">
-          {profile.recommends?.map((recommendation) => (
-            <>
-            <ProductCard
-              product={recommendation.product}
-              key={recommendation.product.id}
-              width="is-one-third"
-            />
-            </>
-          ))}
+          {profile.recommends?.length > 0 ? (
+            profile.recommends.map((recommendation) => (
+              <ProductCard
+                key={recommendation.product.id}
+                product={recommendation.product}
+                width="is-one-third"
+              />
+            ))
+          ) : (
+            <p className="has-text-grey is-italic px-4 py-2">
+              You haven’t recommended any products yet.
+            </p>
+          )}
         </div>
-        <></>
       </CardLayout>
+
       <CardLayout title="Products recommended to you" width="is-full">
         <div className="columns is-multiline">
-          {profile.recommended_to_me?.map((recommendation) => (
-            <ProductCard
-              product={recommendation.product}
-              key={recommendation.product.id}
-              width="is-one-third"
-            />
-          ))}
+          {profile.recommended_to_me?.length > 0 ? (
+            profile.recommended_to_me.map((recommendation) => (
+              <ProductCard
+                key={recommendation.product.id}
+                product={recommendation.product}
+                width="is-one-third"
+              />
+            ))
+          ) : (
+            <p className="has-text-grey is-italic px-4 py-2">
+              No products have been recommended to you yet.
+            </p>
+          )}
         </div>
-        <></>
       </CardLayout>
 
       <CardLayout title="Products you've liked" width="is-full">
         <div className="columns is-multiline">
-          {profile.likes?.map((product) => (
-            <ProductCard product={product} key={product.id} width="is-one-third" />
-          ))}
+          {profile.liked_products?.length > 0 ? (
+            profile.liked_products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                width="is-one-third"
+              />
+            ))
+          ) : (
+            <p className="has-text-grey is-italic px-4 py-2">
+              You haven’t liked any products yet.
+            </p>
+          )}
         </div>
-        <></>
       </CardLayout>
     </>
   );

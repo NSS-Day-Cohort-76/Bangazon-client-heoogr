@@ -24,15 +24,33 @@ const checkErrorJson = (res) => {
 };
 
 
-const catchError = (err) => {
-  if (err.message === '401') {
-    window.location.href = "/login"
-  }
-  if (err.message === '404') {
-    console.error("Resource not found")
-    throw Error(err.message);
+// const catchError = (err) => {
+//   if (err.message === '401') {
+//     window.location.href = "/login"
+//   }
+//   if (err.message === '404') {
+//     console.error("Resource not found")
+//     throw Error(err.message);
+//   }
+// }
+
+function redirectToLogin() {
+  if (typeof window !== "undefined") {
+    window.location.href = "/login";
   }
 }
+
+const catchError = (err) => {
+  if (err.message === '401') {
+    redirectToLogin();
+  }
+
+  if (err.message === '404') {
+    console.error("Resource not found");
+    throw Error(err.message);
+  }
+};
+
 
 export const fetchWithResponse = (resource, options) => fetch(`${API_URL}/${resource}`, options)
   .then(checkErrorJson)
