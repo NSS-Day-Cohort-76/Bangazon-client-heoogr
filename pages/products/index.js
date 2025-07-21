@@ -65,9 +65,7 @@ export default function Products() {
       <div className="columns is-multiline">
         <div>{products.category_id}</div>
         {products.map((product) => (
-          <>
             <ProductCard product={product} key={product.id} />
-          </>
         ))}
       </div>
     </>
