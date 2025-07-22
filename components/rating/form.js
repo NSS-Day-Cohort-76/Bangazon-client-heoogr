@@ -9,7 +9,7 @@ export default function RatingForm({ saveRating, productId }) {
   const submitRating = () => {
   const outOf5 = rating
   console.log("Submitting rating:", outOf5, comment);
-  saveRating({  // ← Remove productId, just pass the rating object
+  saveRating({
     rating: outOf5,
     review: comment
   })
