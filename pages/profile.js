@@ -22,19 +22,10 @@ export default function Profile() {
     <>
       <CardLayout title="Favorite Stores" width="is-full">
         <div className="columns is-multiline">
-          {profile.favorites?.length > 0 ? (
-            profile.favorites.map((favorite) => (
-              <StoreCard
-                key={favorite.id}
-                store={favorite}
-                width="is-one-third"
-              />
-            ))
-          ) : (
-            <p className="has-text-grey is-italic px-4 py-2">
-              You haven’t added any favorite stores yet.
-            </p>
-          )}
+          {profile.favorited_sellers?.map((favorite) => (
+            //display the name of the store owner and link to the store page
+            <StoreCard store={favorite} key={favorite.id} width="is-one-third" />
+          ))}
         </div>
       </CardLayout>
 
@@ -49,9 +40,7 @@ export default function Profile() {
               />
             ))
           ) : (
-            <p className="has-text-grey is-italic px-4 py-2">
-              You haven’t recommended any products yet.
-            </p>
+            <p className="has-text-grey is-italic px-4 py-2">You haven’t recommended any products yet.</p>
           )}
         </div>
       </CardLayout>
@@ -67,9 +56,7 @@ export default function Profile() {
               />
             ))
           ) : (
-            <p className="has-text-grey is-italic px-4 py-2">
-              No products have been recommended to you yet.
-            </p>
+            <p className="has-text-grey is-italic px-4 py-2">No products have been recommended to you yet.</p>
           )}
         </div>
       </CardLayout>
@@ -78,16 +65,10 @@ export default function Profile() {
         <div className="columns is-multiline">
           {profile.liked_products?.length > 0 ? (
             profile.liked_products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                width="is-one-third"
-              />
+              <ProductCard key={product.id} product={product} width="is-one-third" />
             ))
           ) : (
-            <p className="has-text-grey is-italic px-4 py-2">
-              You haven’t liked any products yet.
-            </p>
+            <p className="has-text-grey is-italic px-4 py-2">You haven’t liked any products yet.</p>
           )}
         </div>
       </CardLayout>
