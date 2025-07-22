@@ -1,18 +1,19 @@
-import { Rating } from 'react-simple-star-rating'
+// import { Rating } from 'react-simple-star-rating'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 
-export default function RatingForm({ saveRating }) {
+export default function RatingForm({ saveRating, productId }) {
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState("")
   
   const submitRating = () => {
-    const outOf5 = rating/20
-    saveRating({
-      score: outOf5,
-      review: comment
-    })
-  }
+  const outOf5 = rating
+  console.log("Submitting rating:", outOf5, comment);
+  saveRating({  // ← Remove productId, just pass the rating object
+    rating: outOf5,
+    review: comment
+  })
+}
 
   const Rating = dynamic(() => import('react-simple-star-rating').then(mod => mod.Rating), {
     ssr: false,

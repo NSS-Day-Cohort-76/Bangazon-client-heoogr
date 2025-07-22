@@ -38,6 +38,7 @@ export default function ProductDetail() {
       <div className="column">
         <Detail product={product} like={like} unlike={unlike} />
         <Ratings
+          productId={id}
           refresh={refresh}
           number_purchased={product.number_purchased}
           ratings={product.ratings}

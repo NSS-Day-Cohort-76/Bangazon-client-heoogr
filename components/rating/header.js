@@ -6,7 +6,7 @@ export function Header({ averageRating, ratingsLen, numberPurchased, likesLength
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Avg. Rating</p>
-              <p className="title">{averageRating}</p>
+              <p className="title">{averageRating?.toFixed(1) ?? "0"}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">
@@ -18,7 +18,7 @@ export function Header({ averageRating, ratingsLen, numberPurchased, likesLength
           <div className="level-item has-text-centered">
             <div>
               <p className="heading">Purchased</p>
-              <p className="title">{numberPurchased} times</p>
+              <p className="title">{numberPurchased} {numberPurchased === 1 ? "time" : "times"}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">

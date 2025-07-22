@@ -15,7 +15,7 @@ export function getProducts(query = undefined) {
 }
 
 export function getProductCategories() {
-  return fetchWithResponse('productcategories', {
+  return fetchWithResponse("productcategories", {
     headers: {
       Authorization: `Token ${localStorage.getItem("token")}`,
     },
@@ -57,16 +57,40 @@ export function deleteProduct(id) {
   });
 }
 
-export function rateProduct(productId, rating) {
-  return fetchWithResponse(`products/${productId}/rate-product`, {
+export function rateProduct(productId, { rating, review }) {
+  return fetchWithoutResponse(`products/${productId}/rate-product`, {
+    // Added trailing slash
     method: "POST",
     headers: {
       Authorization: `Token ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(rating),
+    body: JSON.stringify({ rating, review }),
   });
 }
+
+// export function rateProduct(productId, { rating, review }) {
+//   return fetchWithResponse(`products/${productId}/rate-product`, {
+//     method: "POST",
+//     headers: {
+//       Authorization: `Token ${localStorage.getItem("token")}`,
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ rating, review }), // ✅ proper JSON object
+//   });
+// }
+
+// export function rateProduct(productId, payload) {
+//   console.log("Payload going in:", payload); // ✅ SEE THIS
+//   return fetchWithResponse(`products/${productId}/rate-product`, {
+//     method: "POST",
+//     headers: {
+//       Authorization: `Token ${localStorage.getItem("token")}`,
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(payload),
+//   });
+// }
 
 export function addProduct(product) {
   return fetchWithResponse(`products`, {
