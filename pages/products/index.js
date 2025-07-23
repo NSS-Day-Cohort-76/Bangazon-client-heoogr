@@ -89,33 +89,49 @@ export default function Products() {
             <h1 className="title is-2 table-title">Products</h1>
           )}
 
-          {!selectedCategoryId
-            ? lastFivePerCat.map(({ category, products }) => (
-                <div key={category.id} className="category-table">
-                  <div className="category-header">
-                    <span className="category-count"></span>
-                  </div>
-                  <table className="table is-fullwidth is-hoverable">
-                    <thead>
-                      <tr>
-                        <th>{category.name}</th>
-                        <th>Created Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {products.map((product) => (
-                        <tr key={product.id} className="product-row">
-                          <td className="product-name">{product.name}</td>
-                          <td className="product-date">
-                            {product.created_date}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ))
-            : ""}
+{!selectedCategoryId
+  ? lastFivePerCat.map(({ category, products }) => (
+      <div key={category.id} className="box mb-5">
+        <div className="level is-mobile mb-4">
+          <div className="level-left">
+            <div className="level-item">
+              <h2 className="title is-4 has-text-primary mb-0">
+                {category.name}
+              </h2>
+            </div>
+          </div>
+          <div className="level-right">
+            <div className="level-item">
+              <span className="tag is-info is-light">
+                {products.length} {products.length === 1 ? 'item' : 'items'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="table-container">
+          <table className="table is-fullwidth is-hoverable is-striped">
+            <thead>
+              <tr>
+                <th className="has-text-weight-semibold">Product Name</th>
+                <th className="has-text-weight-semibold">Created Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id} className="product-row">
+                  <td className="has-text-weight-medium">{product.name}</td>
+                  <td className="has-text-grey">
+                    {new Date(product.created_date).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))
+  : ""}
         </div>
       </div>
       {console.log(selectedCategoryId)}

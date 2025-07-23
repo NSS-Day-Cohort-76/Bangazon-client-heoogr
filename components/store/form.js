@@ -21,5 +21,3 @@ export default function StoreForm({ nameEl, descriptionEl, saveEvent, title, rou
     </CardLayout>
   )
 }
-
-
