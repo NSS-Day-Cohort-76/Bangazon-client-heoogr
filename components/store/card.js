@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+
 export function StoreCard({ store, width = "is-half" }) {
   if (!store.total_quantity || store.total_quantity === 0) {
     return null; // don't render anything if no items
@@ -55,6 +56,7 @@ export function StoreCard({ store, width = "is-half" }) {
             className="card-footer-item has-text-primary has-text-weight-medium"
           >
             View Store →
+
           </Link>
         </footer>
       </div>
