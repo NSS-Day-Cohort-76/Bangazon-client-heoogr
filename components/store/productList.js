@@ -9,7 +9,7 @@ function ProductGrid({
       <h2 className="title is-4 mt-6">{title}</h2>
       <div className="columns is-multiline">
         {products.length === 0 ? (
-          <p>{emptyMessage}</p>
+          <p>STORE SHOULD NOT BE DISPLAYED WITHOUT ITEMS</p>
         ) : (
           products.map((product) => (
             <div key={product.id} className="column is-one-quarter">

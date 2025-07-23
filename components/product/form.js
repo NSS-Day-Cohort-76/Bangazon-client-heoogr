@@ -5,7 +5,11 @@ import { Textarea, Select, Input } from '../form-elements'
 
 export default function ProductForm({ formEl, saveEvent, title, router }) {
   const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState(null)
 
+  const handleCategorySelect = (value) => {
+    setSelectedCategory(value)
+  }
   useEffect(() => {
     getProductCategories().then(catData => setCategories(catData))
   }, [])
@@ -21,12 +25,21 @@ export default function ProductForm({ formEl, saveEvent, title, router }) {
           id="description"
           label="Description"
         />
+        {/* <Select
+          id="category"
+          options={categories}
+          label="Category"
+          title="Select a Category"
+        /> */}
         <Select
           id="category"
           options={categories}
           label="Category"
           title="Select a Category"
+          onCategorySelect={handleCategorySelect}
         />
+
+
         <Input
           id="price"
           label="Price"

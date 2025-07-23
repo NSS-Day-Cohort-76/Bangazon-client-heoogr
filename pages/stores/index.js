@@ -27,17 +27,21 @@ export default function Stores() {
   // }, [])
 
   return (
-    <>
-      <h1 className="title">Stores</h1>
-      <div className="columns is-multiline">
+  <div className="container is-max-desktop">
+    <div className="section">
+      <h1 className="title is-2 mb-5">Stores</h1>
+      
+      <div className="columns is-multiline is-variable is-4">
         {stores.map((store) => (
-          <StoreCard store={store} key={store.id} />
+          <div key={store.id} className="column is-one-third-desktop is-half-tablet">
+            <StoreCard store={store} />
+          </div>
         ))}
       </div>
-    </>
-  );
+    </div>
+  </div>
+);
 }
-
 Stores.getLayout = function getLayout(page) {
   return (
     <Layout>
